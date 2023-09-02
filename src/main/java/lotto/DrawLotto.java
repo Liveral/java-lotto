@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DrawLotto {
@@ -17,6 +18,8 @@ public class DrawLotto {
         System.out.println("구입금액을 입력해 주세요.");
         user.setMoneyAndLottoCount(inputMoney()); //구입 금액을 입력받고 1000원 단위가 맞다며 해당 금액과 금액/1000 한 값을 user객체의 setter함수에 전달한다.
         user.getLottoTickets(); //사용자가 가진 구입가능 티켓 숫자만큼 getLottoTickets 함수에서 그 수만큼 로또를 발행하고, 그 결과를 출력해준다.
+        user.printLottoTickets();
+        Lotto lotto=new Lotto(inputNumbers());
 
     }
 
@@ -30,11 +33,18 @@ public class DrawLotto {
         }
     }
 
-    public String inputNumbers(){
+    public List<Integer> inputNumbers(){
         String input=Console.readLine();
         inputNumbersValidate(input);
 
-        return input;
+        //입려한 문자열을 쉼표단위로 split한 후, List에 int값으로 변환 후 넣는다.
+        List<Integer> numbers=new ArrayList<>();
+        String[] str=input.split(",");
+        for (int i=0;i<input.length();i++){
+            numbers.add(str[i].charAt(0)-'0');
+        }
+
+        return numbers;
     }
 
     public void inputNumbersValidate(String input){
