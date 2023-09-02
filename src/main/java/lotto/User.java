@@ -31,9 +31,11 @@ public class User {
     }
 
     public void getLottoTickets() {
+
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             userLottos.add(numbers);
         }
+
     }
 }
