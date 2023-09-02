@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     private void sizeCheck(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constants.LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException();
         }
     }
@@ -31,7 +31,7 @@ public class Lotto {
 
     public void rangeCheck(List<Integer> numbers){
         for (int number : numbers){
-            if(number<0||number>45){
+            if(number<Constants.MIN_NUMBER||number>Constants.MAX_NUMBER){
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
