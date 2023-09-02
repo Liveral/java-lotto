@@ -19,7 +19,7 @@ public class Lotto {
         }
     }
 
-    public void duplicateCheck(List<Integer> numbers){
+    public void duplicateCheck(List<Integer> numbers) {
         Set<Integer> OneandOnlyNumbers = new HashSet<>(numbers);    //HashSet<>()은 중복저장을 허용하지 않습니다.
 
         if (OneandOnlyNumbers.size() != Constants.LOTTO_NUMBER_SIZE) {  //Set의 길이가 LOTTO_NUMBER_SIZE와 다르다면 중복되는 숫자가 있어서 변했다는 뜻
@@ -27,8 +27,6 @@ public class Lotto {
         }
 
     }
-
-
 
 
 }
