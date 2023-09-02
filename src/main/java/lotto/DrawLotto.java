@@ -15,11 +15,13 @@ public class DrawLotto {
 
     public void drawingLotto() {
         User user = new User();
+        Lotto lotto;
+
         System.out.println("구입금액을 입력해 주세요.");
-        user.setMoneyAndLottoCount(inputMoney()); //구입 금액을 입력받고 1000원 단위가 맞다며 해당 금액과 금액/1000 한 값을 user객체의 setter함수에 전달한다.
-        user.getLottoTickets(); //사용자가 가진 구입가능 티켓 숫자만큼 getLottoTickets 함수에서 그 수만큼 로또를 발행하고, 그 결과를 출력해준다.
-        user.printLottoTickets();
-        Lotto lotto=new Lotto(inputNumbers());
+        user.setMoneyAndLottoCount(inputMoney()); //구입 금액을 입력받고 1000원 단위가 맞다면 그 값을 전달
+        user.getLottoTickets(); //사용자가 가진 구입가능 티켓 숫자만큼 getLottoTickets 함수에서 그 수만큼 로또를 발행 및 결과 출력.
+        System.out.println("당첨 번호를 입력해 주세요.");
+        lotto=new Lotto(inputNumbers());
 
     }
 
