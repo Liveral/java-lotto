@@ -10,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         sizeCheck(numbers);
         duplicateCheck(numbers);
+        rangeCheck(numbers);
         this.numbers = numbers;
     }
 
