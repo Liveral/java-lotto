@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class User {
@@ -46,7 +47,8 @@ public class User {
     public void setLottoTickets() {
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers=new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(numbers);
             userLottos.add(numbers);
         }
 
