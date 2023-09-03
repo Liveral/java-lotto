@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private final int bonusNumber = 1;
+    private int bonusNumber;
 
     public Lotto(List<Integer> numbers) {
         sizeCheck(numbers);
@@ -39,6 +39,11 @@ public class Lotto {
         if (number < Constants.MIN_NUMBER || number > Constants.MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    public void setBonusNumber(int inputNumber){
+        rangeCheck(inputNumber);
+        this.bonusNumber=inputNumber;
     }
 
 }
