@@ -47,10 +47,10 @@ public class DrawLotto {
 
         //입려한 문자열을 쉼표단위로 split한 후, List에 int값으로 변환 후 넣는다.
         List<Integer> numbers = new ArrayList<>();
-        List<String> list = new ArrayList<>();
         String[] str = input.split(",");
         for (int i = 0; i < str.length; i++) {
-            numbers.add(str[i].charAt(0) - '0');
+            numbers.add(Integer.parseInt(str[i]));
+            System.out.println(numbers.get(i));
         }
 
 
