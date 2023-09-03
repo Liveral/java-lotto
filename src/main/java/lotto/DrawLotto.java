@@ -76,6 +76,13 @@ public class DrawLotto {
         getMoney(hasNumber);
 
     }
+    public int hasBonusNumber(List<Integer> userLotto){
+        if(userLotto.contains(lotto.getBonusNumber())){
+            return Constants.BONUS_SCORE; //보너스 번호가 있다면 보너스 점수 return
+        }
+
+        return 0;
+    }
 
 }
 
