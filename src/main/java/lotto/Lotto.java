@@ -7,8 +7,16 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> winningNumbers;
     private int bonusNumber;
+
+    public List<Integer> getNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 
     public Lotto(List<Integer> numbers) {
         sizeCheck(numbers);
@@ -17,7 +25,7 @@ public class Lotto {
             rangeCheck(inputNumber);
         }
 
-        this.numbers = numbers;
+        this.winningNumbers = numbers;
     }
 
     private void sizeCheck(List<Integer> numbers) {
@@ -43,7 +51,14 @@ public class Lotto {
 
     public void setBonusNumber(int inputNumber){
         rangeCheck(inputNumber);
+
         this.bonusNumber=inputNumber;
+    }
+
+    public void bonusDuplicateCheck(int bonusInput){
+        if(winningNumbers.contains(bonusInput)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 기존 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 
 }
