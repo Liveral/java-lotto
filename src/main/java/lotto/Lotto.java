@@ -1,16 +1,22 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final int bonusNumber = 1;
 
     public Lotto(List<Integer> numbers) {
         sizeCheck(numbers);
         duplicateCheck(numbers);
-        rangeCheck(numbers);
+        for (int inputNumber : numbers) {
+            rangeCheck(inputNumber);
+        }
+
         this.numbers = numbers;
     }
 
@@ -29,16 +35,12 @@ public class Lotto {
 
     }
 
-    public void rangeCheck(List<Integer> numbers){
-        for (int number : numbers){
-            if(number<Constants.MIN_NUMBER||number>Constants.MAX_NUMBER){
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+    public void rangeCheck(int number) {
+        if (number < Constants.MIN_NUMBER || number > Constants.MAX_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
-
-
-
-
 }
+
+
