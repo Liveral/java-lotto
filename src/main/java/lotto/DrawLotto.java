@@ -83,6 +83,9 @@ public class DrawLotto {
 
         return 0;
     }
+    public void getMoney(int hasNumber){
+       user.setWinnings(Result.getReward(hasNumber));
+    }
 
 }
 
