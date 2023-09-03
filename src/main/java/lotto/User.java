@@ -66,4 +66,9 @@ public class User {
         System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n",df.format(Result.getReward(10)),ranks[2]);
         System.out.printf("6개 일치 (%s원) - %d개\n",df.format(Result.getReward(6)),ranks[1]);
     }
+
+    public void printProfit(){
+        double profit=(winnings/(double)money)*100;
+        System.out.printf("총 수익률은 %s%%입니다.",String.format("%.1f",profit));
+    }
 }
