@@ -15,22 +15,25 @@ public class DrawLotto {
 
     public void drawingLotto() {
         user = new User();
-
-        System.out.println("구입금액을 입력해 주세요.");
-        user.setMoneyAndLottoCount(inputMoney()); //구입 금액을 입력하면 user객체에 구입 금액과 구매할 로또의 개수가 setting된다.
-        user.setLottoTickets(); //사용자가 가진 구입가능 티켓 숫자만큼 setLottoTickets 함수에서 로또를 발행 및 번호 출력.
-        System.out.println("당첨 번호를 입력해 주세요.");
-        lotto = new Lotto(inputNumbers());
-        System.out.println("보너스 번호를 입력해 주세요.");
-        lotto.setBonusNumber(inputBonusNumber());
-        checkWinning(); // 당첨 확인
-        System.out.println("당첨 통계\n---");
-        user.printLottoResult();
-        user.printProfit();
-
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            user.setMoneyAndLottoCount(inputMoney()); //구입 금액을 입력하면 user객체에 구입 금액과 구매할 로또의 개수가 setting된다.
+            user.setLottoTickets(); //사용자가 가진 구입가능 티켓 숫자만큼 setLottoTickets 함수에서 로또를 발행 및 번호 출력.
+            System.out.println("당첨 번호를 입력해 주세요.");
+            lotto = new Lotto(inputNumbers());
+            System.out.println("보너스 번호를 입력해 주세요.");
+            lotto.setBonusNumber(inputBonusNumber());
+            checkWinning(); // 당첨 확인
+            System.out.println("당첨 통계\n---");
+            user.printLottoResult();
+            user.printProfit();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public int inputMoney() {
+    public int inputMoney() throws IllegalArgumentException{
         String money = Console.readLine();
         ExceptionHandling.isInputNumbers(money);
         ExceptionHandling.inputMoneyValidate(Integer.parseInt(money));
