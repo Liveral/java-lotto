@@ -60,7 +60,22 @@ public class DrawLotto {
             compareNumbers(lotto.getNumbers(),user.getUserLottos(i)); //당첨 번호와 사용자의 i번째 로또를 비교한다.
         }
     }
+    public void compareNumbers(List<Integer> lotto, List<Integer> userLotto){
+        int hasNumber=0;    //사용자의 로또에 포함된 당첨 번호의 수.
 
+        for (int i=0;i<Constants.LOTTO_NUMBER_SIZE;i++){
+            if(lotto.contains(userLotto.get(i))){
+                hasNumber++;
+            }
+        }
+
+        if(hasNumber==5){
+            hasNumber+=hasBonusNumber(userLotto); //5개 일치한다면 보너스 번호도 확인해야 한다. 보너스번호가 없으면 0을 더해주고, 있으면 보너스 점수를 더해준다.
+        }
+
+        getMoney(hasNumber);
+
+    }
 
 }
 
