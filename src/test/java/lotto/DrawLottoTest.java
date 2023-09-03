@@ -25,7 +25,7 @@ class DrawLottoTest {
     void inputNumbersValidate1(){
         DrawLotto drawLotto= new DrawLotto();
 
-        assertThatThrownBy(() -> drawLotto.inputNumbersValidate("123456"))
+        assertThatThrownBy(() -> drawLotto.isInputHasCommas("123456"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("입력받은 당첨 번호에 숫자가 아닌 문자가 들어있으면 예외를 발생시킵니다.")
@@ -33,7 +33,7 @@ class DrawLottoTest {
     void inputNumbersValidate2(){
         DrawLotto drawLotto= new DrawLotto();
 
-        assertThatThrownBy(() -> drawLotto.inputNumbersValidate("1,2,3,4,5,ㅇ"))
+        assertThatThrownBy(() -> drawLotto.isInputNumbers("1,2,3,4,5,육"))
                 .isInstanceOf(NumberFormatException.class);
     }
 

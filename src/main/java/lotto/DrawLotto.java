@@ -23,6 +23,7 @@ public class DrawLotto {
         System.out.println("당첨 번호를 입력해 주세요.");
         lotto=new Lotto(inputNumbers());
 
+
     }
 
     public int inputMoney() {
@@ -49,24 +50,31 @@ public class DrawLotto {
         return numbers;
     }
 
-    public void inputNumbersValidate(String input){
+    public void inputNumbersValidate(String inputString){
         //","가 포함되지 않은 입력이면 예외처리
+        isInputHasCommas(inputString);
+
+        String[] inputs=inputString.split(",");
+        //쉼표(,)로 구분된 문자열이 하나라도 숫자가 아니라면 예외처리
+        for (String num : inputs){
+            isInputNumbers(num);
+        }
+
+    }
+    public void isInputHasCommas(String input){
         if(!input.contains(",")){
             throw new IllegalArgumentException("[ERROR] 입력된 형식이 올바르지 않습니다(번호를 쉼표(,)를 기준으로 구분하여 입력하세요).");
         }
+    }
 
-        String[] inputs=input.split(",");
-        //쉼표(,)로 구분된 문자열이 하나라도 숫자가 아니라면 예외처리
+    public void isInputNumbers(String input){
         try {
-            for(String str : inputs){
-                int num=Integer.parseInt(str);
-            }
+            int number=Integer.parseInt(input);
         }
         catch (NumberFormatException e){
             System.out.println("[ERROR] 입력된 형식이 올바르지 않습니다(숫자를 입력하세요).");
             throw e;
         }
-
     }
 
 }
