@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DrawLotto {
@@ -23,6 +24,9 @@ public class DrawLotto {
         System.out.println("보너스 번호를 입력해 주세요.");
         lotto.setBonusNumber(inputBonusNumber());
         checkWinning(); // 당첨 확인
+        System.out.println("당첨 통계\n---");
+        user.printLottoResult();
+        user.printProfit();
 
     }
 
@@ -40,10 +44,12 @@ public class DrawLotto {
 
         //입려한 문자열을 쉼표단위로 split한 후, List에 int값으로 변환 후 넣는다.
         List<Integer> numbers = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         String[] str = input.split(",");
-        for (int i = 0; i < input.length(); i++) {
+        for (int i = 0; i < str.length; i++) {
             numbers.add(str[i].charAt(0) - '0');
         }
+
 
         return numbers;
     }
@@ -85,6 +91,7 @@ public class DrawLotto {
     }
     public void getMoney(int hasNumber){
        user.setWinnings(Result.getReward(hasNumber));
+       user.setRanks(Result.getRanking(hasNumber));
     }
 
 }
