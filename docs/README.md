@@ -111,3 +111,4 @@ enum 클래스의 장점이 돋보이는 함수인데, 당첨 번호와 일치�
 매개변수로 받은 당첨 번호와 일치하는 수에 해당하는 상금을 getResult()와 getPrizeMoney()로 가져와 return
 4. `getRanking()`<br/>
    매개변수로 받은 당첨 번호와 일치하는 수에 해당하는 등수를 getResult()와 getRank()로 가져와 return
+---
