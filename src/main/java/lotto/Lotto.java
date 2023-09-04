@@ -17,18 +17,23 @@ public class Lotto {
     }
 
     public Lotto(List<Integer> numbers) {
-        sizeCheck(numbers);
-        duplicateCheck(numbers);
-        for (int inputNumber : numbers) {
-            rangeCheck(inputNumber);
+        try {
+            sizeCheck(numbers);
+            duplicateCheck(numbers);
+            for (int number : numbers){
+                rangeCheck(number);
+            }
+
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
 
         this.winningNumbers = numbers;
     }
 
-    private void sizeCheck(List<Integer> numbers) {
+    public void sizeCheck(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 정해진 수만큼 숫자를 입력하세요.");
         }
     }
 
@@ -49,13 +54,13 @@ public class Lotto {
 
     public void setBonusNumber(int inputNumber){
         rangeCheck(inputNumber);
-
+        bonusDuplicateCheck(inputNumber);
         this.bonusNumber=inputNumber;
     }
 
     public void bonusDuplicateCheck(int bonusInput){
         if(winningNumbers.contains(bonusInput)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 기존 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
     }
 

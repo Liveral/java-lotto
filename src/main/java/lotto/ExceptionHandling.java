@@ -12,7 +12,7 @@ public class ExceptionHandling {
 
     public static void isInputNumbers(String input){
 
-        if(!input.matches("[+-]?\\d*(\\.\\d+)?")){
+        if(!input.matches("[+-]?\\d*(\\.\\d+)?")||input.contains(".")){
             throw new IllegalArgumentException("[ERROR] 입력된 형식이 올바르지 않습니다(숫자를 입력하세요).");
         }
     }

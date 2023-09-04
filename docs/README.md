@@ -38,23 +38,76 @@
 ### 기능 설명
 
 ---
-#### DrawLotto 클래스 - 실질적인 로또 추첨 기능들이 실행되는 클래스
-1. `inputMoney()`, `inputValidate()`<br/>
-로또 구입 금액을 입력받는 함수와 1000원 단위가 아니면 예외처리하는 함수
-2. `getLottoTickets()` <br/>
-구입 가능한 로또 개수를 매개변수로 받은 후 그 수만큼 랜덤한 6개의 숫자 리스트를 만들고 이 2차원 리스트를 return해 주는 함수
+### DrawLotto 클래스 - 실질적인 로또 추첨 기능들이 실행되는 클래스
+1. `drawingLotto()`<br/>
+주 메소드. User 객체와 Lotto 객체를 생성하고 다양한 메소드들을 호출해 로또 발행 및 로또 추첨을 진행한다. 추첨의 진행 과정의 직관성을 위해 입력 요구문을 이 메소드에 표시해주었다.
+2. `inputMoney()`<br/>
+로또 구입 금액을 입력받고 예외처리되지 않았다면 int형으로 return
+3. `inputNumbers()` <br/>
+당첨 번호를 입력받은 뒤 예외처리되지 않았다면 쉼표단위로 split해서 List형식으로 바꾼 뒤 return <br/>
+4. `inputBonusNumber()`<br/>
+보너스 번호를 입력받은 뒤 예외처리되지 않았다면 int형으로 return
+5. `checkWinning()`<br/>
+for문을 돌면서 당첨 번호 리스트와 사용자의 i번째 로또 리스트를 비교하는 compareNumbers()를 호출한다.
+6. `compareNumbers()`<br/>
+매개변수로 받은 두 리스트를 비교하고 일치하는 숫자가 5개이면 보너스 번호를 확인하는 메소드를 호출한다. 모든 과정이 끝나면 상금을 얻기위한 getMoney() 메소드 호출
+7. `hasBonusNumber()` <br/>
+사용자의 보너스번호를 받아서 당첨번호에 보너스 번호가 있는지 확인하는 메소드
+8. `getMoney()` <br/>
+상금을 휙득하는 함수. User클래스의 setWinnings()와 setRanks() 를 호출한다.
 <br/>
 <br/>
 
-#### User 클래스
+### User 클래스 - 사용자에게 필요한 변수들과 메소드들 관리
 1. `getMoney()`,`getLottoCount()`, `setMoneyAndLottoCount()`<br/>
  - 사용자의 구입금액을 표현하는 변수 money, 사용자가 구매한 로또의 개수를 표현하는 변수 lottoCount에 대한 setter,getter
-2. 
+2. `setLottoTickets()`<br/>
+구매 가능한 로또의 수만큼 랜덤으로 6자리 숫자를 받는 함수. 마지막에 결과 출력함수를 호출
+3. `printLottoTickets()` <br/>
+구매 결과 출력 함수
+4. `setWinnings()`<br/>
+당첨금을 받았을 때 저장해놓을 변수 winnings의 setter
+5. `setRanks()` <br/>
+사용자가 몇등을 몇번했는지 저장할 ranks배열의 setter
+6. `printLottoResult()`<br/>
+당첨 통계를 출력하는 함수
+7. `printProfit()` <br/>
+사용자의 총 수익률을 계산해서 출력하는 함수
+
 <br/>
-<br/>
 
+### Lotto 클래스 - 당첨 로또 번호 및 보너스 번호 관리<br/>
+1. `Lotto`생성자<br/>
+로또 생성자는 일급 컬렌셕 개념이 적용된 생성자로, 객체를 만들고 예외처리를 하는게 아니라 예외처리를 모두 거치고 난뒤 문제가 없다면 할당하는 형식으로 구현하였다.
+2. `sizeCheck()`<br/>
+입력받은 당첨 번호의 크기가 6이 아니라면 예외처리
+3. `duplicateCheck()`<br/>
+입력받은 당첨 번호에 중복이 있다면 예외처리
+4. `rangeCheck()`<br/>
+입력받은 당첨 번호에 1~45 범위를 벗어나는 숫자가 있다면 예외처리
+5. `setBonusNumber()` <br/>
+보너스 번호 setter 여기도 일급 컬렉션 구조로 예외처리를 모두 마치고 정상이면 private 변수에 할당
+6. `bonusDuplicateCheck()` <br/>
+보너스 번호가 기존 당첨 번호와 중복이 있다면 예외처리
+### ExceptionHandling 클래스 - 예외처리 함수 관리클래스 <br/>
+1. `isInputNumbers()`<br/>
+전달받은 문자가 숫자가 아니면 예외처리하는 함수
+2. `isInputHasCommas()`<br/>
+전달받은 당첨번호 문자열에 쉼표(,) 가 포함되어 있지 않다면 예외처리하는 함수
+3. `inputMoneyValidate()`<br/>
+입력된 구입 금액이 1000원 단위가 아니면 예외처리하는 함수
+4. `isInputMoneyZero()` <br/>
+입력받은 구입 금액이 0원 이하이면 예외처리하는 함수
+5. `inputNumbersValidate()` <br/>
+isInputHasCommas()를 호출해 쉼표가 있는지 for문으로 isInputNumbers()를 호출해 쉼표로 구분됐을때 모두 숫자인지 체크하는 함수
+   <br/>
 
-
-
-#### Lotto 클래스
-1. 
+### Result 클래스 - 일치하는 숫자, 등수, 상금을 연결시키는 Enum 클래스<br/>
+1. `Result`생성자<br/>
+당첨 번호와 일치하는 숫자의 수 winning, 그에 따른 등수 rank, 상금 prizeMoney를 매개변수로 하는 생성자
+2. `getResult()`<br/>
+enum 클래스의 장점이 돋보이는 함수인데, 당첨 번호와 일치하는 숫자의 수를 매개변수로 넘겨주면 해당 수와 묶여있는 열거체를 return
+3. `getReward()` <br/>
+매개변수로 받은 당첨 번호와 일치하는 수에 해당하는 상금을 getResult()와 getPrizeMoney()로 가져와 return
+4. `getRanking()`<br/>
+   매개변수로 받은 당첨 번호와 일치하는 수에 해당하는 등수를 getResult()와 getRank()로 가져와 return

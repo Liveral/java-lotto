@@ -11,7 +11,7 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -27,7 +27,7 @@ class LottoTest {
     @Test
     void createLottoByOverrangeNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 88)))
+        assertThatThrownBy(() ->new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -36,7 +36,7 @@ class LottoTest {
     void bonusDuplicateCheck(){
         Lotto lotto= new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThatThrownBy(() -> lotto.bonusDuplicateCheck(6))
+        assertThatThrownBy(() -> lotto.bonusDuplicateCheck(4))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

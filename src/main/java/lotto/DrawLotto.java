@@ -36,6 +36,7 @@ public class DrawLotto {
     public int inputMoney() throws IllegalArgumentException{
         String money = Console.readLine();
         ExceptionHandling.isInputNumbers(money);
+        ExceptionHandling.isInputMoneyZero(money);
         ExceptionHandling.inputMoneyValidate(Integer.parseInt(money));
 
         return Integer.parseInt(money);
