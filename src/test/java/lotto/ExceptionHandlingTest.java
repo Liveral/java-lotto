@@ -18,8 +18,8 @@ class ExceptionHandlingTest {
     @DisplayName("입력받은 당첨 번호에 숫자가 아닌 문자가 들어있으면 예외를 발생시킵니다.")
     @Test
     void isInputNumbers(){
-        assertThatThrownBy(() -> ExceptionHandling.isInputNumbers("1,2,3,4,5,육"))
-                .isInstanceOf(NumberFormatException.class);
+        assertThatThrownBy(() -> ExceptionHandling.isInputNumbers("1000j"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("입력받은 구입 금액이 1000원 단위가 아니면 예외를 발생시킵니다.")
