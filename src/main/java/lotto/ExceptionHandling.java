@@ -3,18 +3,21 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class ExceptionHandling {
+    public static void isInputMoneyZero(String input){
+        if(Integer.parseInt(input)==0){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 0원보다 커야합니다.");
+        }
+    }
+
 
     public static void isInputNumbers(String input){
-        try {
-            int number=Integer.parseInt(input);
-        }
-        catch (NumberFormatException e){
-            System.out.println("[ERROR] 입력된 형식이 올바르지 않습니다(숫자를 입력하세요).");
-            throw e;
+
+        if(!input.matches("[+-]?\\d*(\\.\\d+)?")){
+            throw new IllegalArgumentException("[ERROR] 입력된 형식이 올바르지 않습니다(숫자를 입력하세요).");
         }
     }
     public static void inputMoneyValidate(int money) {
-        if (money != Constants.LOTTO_NUMBER_SIZE) {
+        if (money%1000!=0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력 받습니다.");
         }
     }
